@@ -104,6 +104,7 @@ ExceptionErrorDlg(Content){
 	Gui, ExcErrDlg:+HWNDhExcErrDlg
 	Gui, ExcErrDlg:Show, , Error!
 	WinWaitClose, % "ahk_id " hExcErrDlg
+	Return % Contents
 }
 ExcErrDlgGuiCopyClipboard(){
 	Global ExcErrDlgGuiText
