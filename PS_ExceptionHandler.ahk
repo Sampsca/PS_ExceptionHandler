@@ -100,7 +100,7 @@ ExceptionErrorDlg(Content){
 		}
 	Gui, ExcErrDlg:Add, Button,w100 gExcErrDlgGuiClose, OK
 	Gui, ExcErrDlg:Add, Button,w100 x+m yp gExcErrDlgGuiCopyClipboard, Copy to Clipboard
-	Gui, ExcErrDlg:+ToolWindow +AlwaysOnTop
+	Gui, ExcErrDlg:+ToolWindow +AlwaysOnTop -SysMenu +Owner
 	Gui, ExcErrDlg:+HWNDhExcErrDlg
 	Gui, ExcErrDlg:Show, , Error!
 	WinWaitClose, % "ahk_id " hExcErrDlg
