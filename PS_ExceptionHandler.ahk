@@ -1,5 +1,5 @@
 ;
-; AutoHotkey Version: 1.1.30.01
+; AutoHotkey Version: 1.1.30.03
 ; Language:       English
 ; Platform:       Optimized for Windows 10
 ; Author:         Sam.
@@ -26,6 +26,8 @@
 
 ;;; When throwing an exception, it is best to format it as follows:
 ; throw Exception("We threw an exception",,"Things went wrong...`n`n" Traceback())
+; If you want to format your exception so that it will only call Traceback() if it is a function (if PS_ExceptionHandler has been #Include'd in the script), use:
+;    throw Exception("We threw an exception",,"Things went wrong..." (IsFunc("Traceback")?"`n`n" Func("Traceback").Call():""))
 
 ;;; Your try/catch blocks should look something like:
 ;~ try {
@@ -100,7 +102,7 @@ ExceptionErrorDlg(Content){
 		}
 	Gui, ExcErrDlg:Add, Button,w100 gExcErrDlgGuiClose, OK
 	Gui, ExcErrDlg:Add, Button,w100 x+m yp gExcErrDlgGuiCopyClipboard, Copy to Clipboard
-	Gui, ExcErrDlg:+ToolWindow +AlwaysOnTop -SysMenu +Owner
+	Gui, ExcErrDlg:+ToolWindow +AlwaysOnTop
 	Gui, ExcErrDlg:+HWNDhExcErrDlg
 	Gui, ExcErrDlg:Show, , Error!
 	WinWaitClose, % "ahk_id " hExcErrDlg
@@ -145,6 +147,8 @@ GetSourceCode(){
 		aah:=fileObj2.Read()
 		fileObj2.Close()
 		}
+	Else
+		aah:="" ; Compiled script is probably compressed with e.g. MPRESS
 	Return aah
 }
 
